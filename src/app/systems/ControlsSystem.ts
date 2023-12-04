@@ -8,6 +8,7 @@ import Easing from "~/lib/math/Easing";
 import GroundControlsNavigator from "../controls/GroundControlsNavigator";
 import ControlsNavigator from "../controls/ControlsNavigator";
 import FreeControlsNavigator from "../controls/FreeControlsNavigator";
+import FirstPersonNavigator from "../controls/FirstPersonNavigator";
 import CursorStyleSystem from "./CursorStyleSystem";
 import PerspectiveCamera from "~/lib/core/PerspectiveCamera";
 import TerrainSystem from "~/app/systems/TerrainSystem";
@@ -26,6 +27,7 @@ export interface ControlsState {
 export enum NavigationMode {
 	Ground,
 	Free,
+	FirstPerson,
 	Slippy
 }
 
@@ -42,6 +44,7 @@ export default class ControlsSystem extends System {
 
 	private groundNavigator: GroundControlsNavigator;
 	private freeNavigator: FreeControlsNavigator;
+	private firstPersonNavigator: FirstPersonNavigator;
 	private slippyNavigator: SlippyControlsNavigator;
 	private activeNavigator: ControlsNavigator = null;
 
@@ -75,11 +78,12 @@ export default class ControlsSystem extends System {
 		this.groundNavigator = new GroundControlsNavigator(this.element, this.camera, cursorStyleSystem, terrainHeightProvider);
 		this.freeNavigator = new FreeControlsNavigator(this.element, this.camera, terrainHeightProvider);
 		this.slippyNavigator = new SlippyControlsNavigator(this.element, this.camera, cursorStyleSystem, terrainHeightProvider);
+		this.firstPersonNavigator = new FirstPersonNavigator(this.element, this.camera, cursorStyleSystem, terrainHeightProvider);
 
-		this.activeNavigator = this.slippyNavigator;
-		this.slippyNavigator.enable();
-		this.slippyNavigator.syncWithCamera(null);
-		this.mode = NavigationMode.Slippy;
+		this.activeNavigator = this.firstPersonNavigator;
+		this.firstPersonNavigator.enable();
+		this.firstPersonNavigator.syncWithCamera(null);
+		this.mode = NavigationMode.FirstPerson;
 
 		this.initStateFromHash();
 	}
