@@ -21,6 +21,9 @@ export default class FreeControlsNavigator extends ControlsNavigator {
 	private yawMinusKeyPressed: boolean = false;
 	private yawPlusKeyPressed: boolean = false;
 	private pointerLocked: boolean = false;
+	private spacePressed: boolean = false;
+	private jumping: boolean = false;
+	private jump_position: number = 0;
 
 	public constructor(
 		element: HTMLElement,
@@ -107,6 +110,9 @@ export default class FreeControlsNavigator extends ControlsNavigator {
 			case 'KeyF':
 				this.pitchPlusKeyPressed = true;
 				break;
+			case 'Space':
+				this.spacePressed = true;
+				break;
 		}
 	}
 
@@ -142,6 +148,9 @@ export default class FreeControlsNavigator extends ControlsNavigator {
 				break;
 			case 'KeyF':
 				this.pitchPlusKeyPressed = false;
+				break;
+			case 'Space':
+				this.spacePressed = false;
 				break;
 		}
 	}
@@ -230,10 +239,23 @@ export default class FreeControlsNavigator extends ControlsNavigator {
 			movementDelta = Vec3.add(movementDelta, Vec3.multiplyScalar(forwardDir, deltaTime));
 		}
 		if (this.leftKeyPressed) {
-			movementDelta = Vec3.add(movementDelta, Vec3.multiplyScalar(rightDir, 0.1 * -deltaTime));
+			movementDelta = Vec3.add(movementDelta, Vec3.multiplyScalar(rightDir, 0.5 * -deltaTime));
 		}
 		if (this.rightKeyPressed) {
-			movementDelta = Vec3.add(movementDelta, Vec3.multiplyScalar(rightDir, 0.1 * deltaTime));
+			movementDelta = Vec3.add(movementDelta, Vec3.multiplyScalar(rightDir, 0.5 * deltaTime));
+		}
+		if (this.spacePressed) {
+			this.jumping = true;
+		}
+		let _jump_y = 0;
+
+		if (this.jumping) {
+			if (this.jump_position == 30) {
+				this.jumping = false;
+				this.jump_position = 0;
+			}
+			this.jump_position++;
+			_jump_y = (-((-1 + this.jump_position / 15)**2) + 1)
 		}
 		movementDelta = Vec3.multiplyScalar(movementDelta, speed);
 
@@ -242,7 +264,7 @@ export default class FreeControlsNavigator extends ControlsNavigator {
 		this.camera.position.z += movementDelta.z;
 
 		const heightmapValue = this.getHeightmapValueAtPosition(this.camera.position.x, this.camera.position.z);
-		this.camera.position.y = heightmapValue + Config.MinFreeCameraHeight;
+		this.camera.position.y = heightmapValue + Config.MinFreeCameraHeight + _jump_y;
 
 		this.camera.updateMatrix();
 

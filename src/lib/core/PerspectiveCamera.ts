@@ -27,7 +27,7 @@ export default class PerspectiveCamera extends Camera {
 			// this.near,
 			1,
 			// this.far,
-			4000
+			3000
 		);
 		this.updateProjectionMatrixInverse();
 	}

@@ -91,6 +91,8 @@ export default class PickingSystem extends System {
 	}
 
 	private onClick(): void {
+		return;
+		
 		if (this.hoveredObjectId === 0 || this.hoveredObjectId === this.selectedObjectId) {
 			this.clearSelection();
 			return;
