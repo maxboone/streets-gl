@@ -1,11 +1,12 @@
 {
 	"compilerOptions": {
 		"module": "esnext",
-		"target": "ESNext",
+		"target": "esnext",
 		"lib": [
 			"es2021",
 			"dom"
 		],
+		"types": ["vite/client"],
 		"allowJs": true,
 		"sourceMap": true,
 		"moduleResolution": "Node",
@@ -18,7 +19,7 @@
 		"allowSyntheticDefaultImports": true,
 		"noImplicitOverride": true,
 		"noImplicitReturns": true,
-		"skipLibCheck": true,
+		"isolatedModules": true,
 		"jsx": "react",
 		"baseUrl": "./src",
 		"paths": {

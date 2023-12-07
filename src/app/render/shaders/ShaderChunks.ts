@@ -12,6 +12,7 @@ const mapFiles = (context: __WebpackModuleApi.RequireContext): Record<string, st
 	}, {});
 }
 
-const ShaderChunks = mapFiles(require.context('../../../resources/shaders/chunks', true, /\.glsl$/));
+const context = import.meta.glob('../../../resources/shaders/chunks/*.glsl');
+const ShaderChunks = Object.fromEntries(Object.entries(context).map(([key, value]) => [key.replace(/^.*[\\\/]/, '').replace(/\.\w+$/, ''), value.default]));
 
 export default ShaderChunks;

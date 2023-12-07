@@ -1,9 +1,12 @@
-import * as RG from "~/lib/render-graph";
+import type {
+	ResourcePropMap,
+} from "~/lib/render-graph";
+import { Pass as RGPass } from "~/lib/render-graph"
 import PassManager from '../PassManager';
 import AbstractRenderer from '~/lib/renderer/abstract-renderer/AbstractRenderer';
 import RenderGraphResourceFactory from '../render-graph/RenderGraphResourceFactory';
 
-export default abstract class Pass<T extends RG.ResourcePropMap = RG.ResourcePropMap> extends RG.Pass<T> {
+export default abstract class Pass<T extends ResourcePropMap = ResourcePropMap> extends RGPass<T> {
 	protected readonly manager: PassManager;
 	protected readonly renderer: AbstractRenderer;
 	protected readonly resourceFactory: RenderGraphResourceFactory;
