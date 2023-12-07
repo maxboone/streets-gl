@@ -218,8 +218,8 @@ export default class FreeControlsNavigator extends ControlsNavigator {
 
 	public update(deltaTime: number): void {
 		const mat = this.camera.matrixWorld.values;
-		const forwardDir = Vec3.normalize(new Vec3(mat[8], mat[9], mat[10]));
-		const rightDir = Vec3.normalize(new Vec3(mat[0], mat[1], mat[2]));
+		const forwardDir = Vec3.normalize(new Vec3(mat[8], 0, mat[10]));
+		const rightDir = Vec3.normalize(new Vec3(mat[0], 0, mat[2]));
 		const speed = this.fastMovementKeyPressed ? Config.FreeCameraSpeedFast : Config.FreeCameraSpeed;
 
 		let movementDelta = new Vec3();
@@ -230,10 +230,10 @@ export default class FreeControlsNavigator extends ControlsNavigator {
 			movementDelta = Vec3.add(movementDelta, Vec3.multiplyScalar(forwardDir, deltaTime));
 		}
 		if (this.leftKeyPressed) {
-			movementDelta = Vec3.add(movementDelta, Vec3.multiplyScalar(rightDir, -deltaTime));
+			movementDelta = Vec3.add(movementDelta, Vec3.multiplyScalar(rightDir, 0.1 * -deltaTime));
 		}
 		if (this.rightKeyPressed) {
-			movementDelta = Vec3.add(movementDelta, Vec3.multiplyScalar(rightDir, deltaTime));
+			movementDelta = Vec3.add(movementDelta, Vec3.multiplyScalar(rightDir, 0.1 * deltaTime));
 		}
 		movementDelta = Vec3.multiplyScalar(movementDelta, speed);
 
@@ -242,7 +242,7 @@ export default class FreeControlsNavigator extends ControlsNavigator {
 		this.camera.position.z += movementDelta.z;
 
 		const heightmapValue = this.getHeightmapValueAtPosition(this.camera.position.x, this.camera.position.z);
-		this.camera.position.y = Math.max(this.camera.position.y, heightmapValue + Config.MinFreeCameraHeight);
+		this.camera.position.y = Math.min(this.camera.position.y, heightmapValue + Config.MinFreeCameraHeight);
 
 		this.camera.updateMatrix();
 

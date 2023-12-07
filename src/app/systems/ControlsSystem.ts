@@ -80,10 +80,10 @@ export default class ControlsSystem extends System {
 		this.slippyNavigator = new SlippyControlsNavigator(this.element, this.camera, cursorStyleSystem, terrainHeightProvider);
 		this.firstPersonNavigator = new FirstPersonNavigator(this.element, this.camera, cursorStyleSystem, terrainHeightProvider);
 
-		this.activeNavigator = this.firstPersonNavigator;
-		this.firstPersonNavigator.enable();
-		this.firstPersonNavigator.syncWithCamera(null);
-		this.mode = NavigationMode.FirstPerson;
+		this.activeNavigator = this.freeNavigator;
+		this.freeNavigator.enable();
+		this.freeNavigator.syncWithCamera(null);
+		this.mode = NavigationMode.Free;
 
 		this.initStateFromHash();
 	}

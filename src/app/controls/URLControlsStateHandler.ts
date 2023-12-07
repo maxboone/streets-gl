@@ -8,10 +8,10 @@ export default class URLControlsStateHandler {
 	public serializeControlsState(state: ControlsState): string {
 		const position = MathUtils.meters2degrees(state.x, state.z);
 
-		const lat = position.lat.toFixed(5);
-		const lon = position.lon.toFixed(5);
-		const pitch = MathUtils.toDeg(state.pitch).toFixed(2);
-		const yaw = MathUtils.toDeg(state.yaw).toFixed(2);
+		const lat = position.lat.toFixed(20);
+		const lon = position.lon.toFixed(20);
+		const pitch = MathUtils.toDeg(state.pitch).toFixed(3);
+		const yaw = MathUtils.toDeg(state.yaw).toFixed(3);
 		const distance = state.distance.toFixed(2);
 
 		return `${lat},${lon},${pitch},${yaw},${distance}`;
