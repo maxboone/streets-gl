@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { SearchLocation } from "./SearchLocation";
+import { MiniMap } from "./MiniMap";
+import KeyBindings from "./KeyBindings";
 
 export const GameUIRoot: React.FC = () => {
     const [search, setSearch] = useState(false);
@@ -20,5 +22,7 @@ export const GameUIRoot: React.FC = () => {
 
     return <>
         <SearchLocation open={search} setOpen={setSearch} />
+        <KeyBindings />
+        <MiniMap/>
     </>
 }

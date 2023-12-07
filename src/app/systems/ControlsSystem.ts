@@ -240,7 +240,12 @@ export default class ControlsSystem extends System {
 			return this.groundNavigator.yaw;
 		}
 
-		return 0;
+		if (this.freeNavigator && this.freeNavigator.isEnabled) {
+			return this.freeNavigator.yaw;
+		}
+
+
+		return  0;
 	}
 
 	public getGroundControlsTarget(): Vec3 {

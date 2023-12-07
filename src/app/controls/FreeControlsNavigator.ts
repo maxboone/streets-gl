@@ -10,7 +10,7 @@ export default class FreeControlsNavigator extends ControlsNavigator {
 	private readonly terrainHeightProvider: TerrainHeightProvider;
 	private readonly camera: PerspectiveCamera;
 	private pitch: number = MathUtils.toRad(45);
-	private yaw: number = MathUtils.toRad(0);
+	public yaw: number = MathUtils.toRad(0);
 	private forwardKeyPressed: boolean = false;
 	private leftKeyPressed: boolean = false;
 	private rightKeyPressed: boolean = false;
@@ -24,6 +24,7 @@ export default class FreeControlsNavigator extends ControlsNavigator {
 	private spacePressed: boolean = false;
 	private jumping: boolean = false;
 	private jump_position: number = 0;
+	private pointer_lock: number = 0;
 
 	public constructor(
 		element: HTMLElement,
@@ -51,12 +52,17 @@ export default class FreeControlsNavigator extends ControlsNavigator {
 	}
 
 	private pointerLockChange(): void {
+		this.pointer_lock = Date.now();
 		this.pointerLocked = document.pointerLockElement === this.element;
 	}
 
 	private mouseDownEvent(e: MouseEvent): void {
 		if (!this.isEnabled) {
 			return;
+		}
+
+		if (this.pointer_lock != null && Date.now() - this.pointer_lock < 2000) {
+			return
 		}
 
 		e.preventDefault();
@@ -152,6 +158,18 @@ export default class FreeControlsNavigator extends ControlsNavigator {
 			case 'Space':
 				this.spacePressed = false;
 				break;
+			case 'KeyK':
+				document.exitPointerLock();
+				this.forwardKeyPressed = this.backwardKeyPressed = this.leftKeyPressed = this.rightKeyPressed = false;
+				break;
+			case 'KeyM':
+				document.exitPointerLock();
+				this.forwardKeyPressed = this.backwardKeyPressed = this.leftKeyPressed = this.rightKeyPressed = false;
+				break;
+			case 'KeyP':
+				document.exitPointerLock();
+				this.forwardKeyPressed = this.backwardKeyPressed = this.leftKeyPressed = this.rightKeyPressed = false;
+				break;
 		}
 	}
 
@@ -194,7 +212,8 @@ export default class FreeControlsNavigator extends ControlsNavigator {
 
 	public override enable(): void {
 		super.enable();
-		this.element.requestPointerLock();
+		// Only request pointer lock from gesture.
+		// this.element.requestPointerLock();
 	}
 
 	public override disable(): void {

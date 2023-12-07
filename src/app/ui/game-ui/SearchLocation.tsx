@@ -1,4 +1,3 @@
-import { Command } from 'cmdk'
 import React from 'react'
 
 type ISearchLocation = {
