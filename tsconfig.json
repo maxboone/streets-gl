@@ -1,14 +1,14 @@
 {
 	"compilerOptions": {
 		"module": "esnext",
-		"target": "es6",
+		"target": "ESNext",
 		"lib": [
 			"es2021",
 			"dom"
 		],
 		"allowJs": true,
 		"sourceMap": true,
-		"moduleResolution": "node",
+		"moduleResolution": "Node",
 		"alwaysStrict": true,
 		"noImplicitAny": true,
 		"noImplicitThis": true,
