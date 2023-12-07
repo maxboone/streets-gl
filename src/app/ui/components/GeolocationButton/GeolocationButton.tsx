@@ -1,5 +1,5 @@
 import React, {useContext, useState} from "react";
-import styles from './GeolocationButton.scss';
+import styles from './GeolocationButton.scss?inline';
 import {ActionsContext} from "~/app/ui/UI";
 import {ImSpinner2} from "react-icons/im";
 import {MdOutlineMyLocation} from "react-icons/md";

@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./ModalCategoryContainer.scss";
+import styles from "./ModalCategoryContainer.scss?inline";
 
 const ModalCategoryContainer: React.FC<{
 	children: React.ReactNode;

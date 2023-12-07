@@ -1,7 +1,7 @@
 import React, {useContext, useEffect} from "react";
 import {ActionsContext} from "~/app/ui/UI";
 import Countries from "./countries.json";
-import styles from "./SavedPlace.scss";
+import styles from "./SavedPlace.scss?inline";
 import {MdContentCopy} from "react-icons/md";
 import {AiFillDelete} from "react-icons/ai";
 import {AiFillEdit, AiTwotoneSave} from "react-icons/ai";

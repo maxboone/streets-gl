@@ -1,5 +1,5 @@
 import React from "react";
-import styles from './NavPanel.scss';
+import styles from './NavPanel.scss?inline';
 import {FaMapMarkerAlt} from "react-icons/fa";
 import {AiOutlineInfo} from "react-icons/ai";
 import {IoSettingsOutline} from 'react-icons/io5';

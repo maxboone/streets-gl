@@ -1,5 +1,5 @@
 import React from "react";
-import styles from './Panel.scss';
+import styles from './Panel.scss?inline';
 
 const Panel: React.FC<{
 	className: string;

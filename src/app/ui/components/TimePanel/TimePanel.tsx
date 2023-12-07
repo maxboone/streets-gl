@@ -1,8 +1,8 @@
 import React, {useContext} from "react";
 import {useRecoilState} from "recoil";
 import {AtomsContext} from "~/app/ui/UI";
-import styles from './TimePanel.scss';
-import timeButtonStyles from './TimeButton.scss';
+import styles from './TimePanel.scss?inline';
+import timeButtonStyles from './TimeButton.scss?inline';
 import TimeControls from "~/app/ui/components/TimePanel/TimeControls";
 
 const presets = ['Dynamic', 'Morning', 'Noon', 'Evening'];

@@ -1,6 +1,6 @@
 import React from "react";
 import Panel from "~/app/ui/components/Panel";
-import styles from './LegalAttributionPanel.scss';
+import styles from './LegalAttributionPanel.scss?inline';
 
 const LegalAttribution: React.FC = () => {
 	return <Panel className={styles.attributionPanel}>

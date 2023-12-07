@@ -1,6 +1,6 @@
 import React, {useContext, useMemo, useRef} from "react";
 import ModalPanel from "~/app/ui/components/ModalPanel";
-import styles from './SettingsModalPanel.scss';
+import styles from './SettingsModalPanel.scss?inline';
 import {useRecoilValue} from "recoil";
 import {ActionsContext, AtomsContext} from "~/app/ui/UI";
 import ModalCategory from "~/app/ui/components/ModalPanel/ModalCategory";

@@ -1,5 +1,5 @@
 import React from "react";
-import styles from './ModalPar.scss';
+import styles from './ModalPar.scss?inline';
 
 const ModalPar: React.FC<{
 	children: React.ReactNode;

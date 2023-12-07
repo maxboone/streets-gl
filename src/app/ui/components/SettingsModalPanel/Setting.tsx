@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Setting.scss";
+import styles from "./Setting.scss?inline";
 
 const Setting: React.FC<{
 	name: string;

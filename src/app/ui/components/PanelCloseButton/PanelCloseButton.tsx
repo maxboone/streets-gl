@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./PanelCloseButton.scss";
+import styles from "./PanelCloseButton.scss?inline";
 
 const PanelCloseButton: React.FC<{
 	onClick: () => void;

@@ -6,7 +6,7 @@ import {AiOutlinePlus} from "react-icons/ai";
 import ModalButtonRow from "~/app/ui/components/ModalPanel/ModalButtonRow";
 import SavedPlace, {SavedPlaceParams} from "~/app/ui/components/SavedPlacesModalPanel/SavedPlace";
 import {ActionsContext} from "~/app/ui/UI";
-import styles from './SavedPlacesModalPanel.scss';
+import styles from './SavedPlacesModalPanel.scss?inline';
 
 const SavedPlacesModalPanel: React.FC<{
 	onClose: () => void;

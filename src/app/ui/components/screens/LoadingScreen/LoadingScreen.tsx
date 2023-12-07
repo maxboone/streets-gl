@@ -1,5 +1,5 @@
 import React, {useContext, useState} from "react";
-import classes from './LoadingScreen.scss';
+import classes from './LoadingScreen.scss?inline';
 import {AtomsContext} from "~/app/ui/UI";
 import {useRecoilValue} from "recoil";
 

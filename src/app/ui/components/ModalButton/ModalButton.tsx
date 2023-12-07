@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./ModalButton.scss";
+import styles from "./ModalButton.scss?inline";
 import {ImSpinner2} from "react-icons/im";
 
 const ModalButton: React.FC<{

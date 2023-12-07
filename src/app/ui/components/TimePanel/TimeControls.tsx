@@ -4,8 +4,8 @@ import {AiOutlineSave} from "react-icons/ai";
 import {FiEdit2} from "react-icons/fi";
 import {ActionsContext, AtomsContext} from "~/app/ui/UI";
 import {useRecoilState, useRecoilValue} from "recoil";
-import styles from './TimeControls.scss';
-import timeButtonStyles from './TimeButton.scss';
+import styles from './TimeControls.scss?inline';
+import timeButtonStyles from './TimeButton.scss?inline';
 import CenteredIcon from "~/app/ui/components/TimePanel/CenteredIcon";
 
 const timeSpeedButtons = [1, 10, 100, 1000, 10000];

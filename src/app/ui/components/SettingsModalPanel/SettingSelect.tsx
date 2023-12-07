@@ -1,5 +1,5 @@
 import React, {useContext} from "react";
-import styles from "./Setting.scss";
+import styles from "./Setting.scss?inline";
 import {AtomsContext} from "~/app/ui/UI";
 import {useRecoilState, useRecoilValue} from "recoil";
 import Setting from "./Setting";

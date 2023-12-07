@@ -1,5 +1,5 @@
 import React from "react";
-import styles from './InfoModalPanel.scss';
+import styles from './InfoModalPanel.scss?inline';
 import ModalPanel from "~/app/ui/components/ModalPanel";
 import {IoLogoDiscord, IoLogoGithub} from "react-icons/io5";
 import ModalCategoryContainer from "~/app/ui/components/ModalPanel/ModalCategoryContainer";

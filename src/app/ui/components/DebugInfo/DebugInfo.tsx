@@ -1,6 +1,6 @@
 import React, {useContext} from "react";
 import {useRecoilValue} from "recoil";
-import styles from './DebugInfo.scss';
+import styles from './DebugInfo.scss?inline';
 import {AtomsContext} from "~/app/ui/UI";
 
 const DebugInfo: React.FC<{showRenderGraph: () => void}> = ({showRenderGraph}) => {

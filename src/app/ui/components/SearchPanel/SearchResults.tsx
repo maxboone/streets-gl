@@ -1,6 +1,6 @@
 import React, {useContext} from "react";
 import {ActionsContext} from "~/app/ui/UI";
-import styles from './SearchResults.scss';
+import styles from './SearchResults.scss?inline';
 
 interface Entry {
 	lat: number;

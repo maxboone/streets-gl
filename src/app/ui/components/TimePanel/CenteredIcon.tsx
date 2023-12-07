@@ -1,6 +1,6 @@
 import React from "react";
 import {IconType} from "react-icons";
-import styles from './CenteredIcon.scss';
+import styles from './CenteredIcon.scss?inline';
 
 const CenteredIcon: React.FC<{
 	type: IconType;

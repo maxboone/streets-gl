@@ -1,5 +1,5 @@
 import React from "react";
-import styles from './Compass.scss';
+import styles from './Compass.scss?inline';
 
 const directionToTransformStyle = (direction: number): string => {
 	return `rotate(${direction}deg)`;

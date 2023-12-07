@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./ModalButtonRow.scss";
+import styles from "./ModalButtonRow.scss?inline";
 import ModalButton from "~/app/ui/components/ModalButton";
 import {GrPowerReset} from "react-icons/gr";
 

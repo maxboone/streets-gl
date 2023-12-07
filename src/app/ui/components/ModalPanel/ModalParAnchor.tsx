@@ -1,5 +1,5 @@
 import React from "react";
-import styles from './ModalParAnchor.scss';
+import styles from './ModalParAnchor.scss?inline';
 
 const ModalParAnchor: React.FC<{
 	children: React.ReactNode;

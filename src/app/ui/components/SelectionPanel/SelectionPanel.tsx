@@ -1,6 +1,6 @@
 import React, {useCallback, useContext, useEffect, useState} from "react";
 import {useRecoilState} from "recoil";
-import styles from "./SelectionPanel.scss";
+import styles from "./SelectionPanel.scss?inline";
 import Panel from "~/app/ui/components/Panel";
 import {AtomsContext} from "~/app/ui/UI";
 import Skeleton, {SkeletonTheme} from "react-loading-skeleton";

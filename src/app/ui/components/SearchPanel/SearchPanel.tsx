@@ -2,7 +2,7 @@ import React, {useCallback, useState} from "react";
 import {debounce} from "~/app/ui/utils";
 import SearchBar from "~/app/ui/components/SearchPanel/SearchBar";
 import SearchResults from "~/app/ui/components/SearchPanel/SearchResults";
-import styles from './SearchPanel.scss';
+import styles from './SearchPanel.scss?inline';
 import parseLatLon from "~/app/ui/components/SearchPanel/parseLatLon";
 
 interface SearchResult {

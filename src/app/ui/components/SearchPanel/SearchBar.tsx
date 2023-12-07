@@ -1,6 +1,6 @@
 import {IoCloseOutline, IoSearch} from "react-icons/io5";
 import React, {useRef} from "react";
-import styles from './SearchBar.scss';
+import styles from './SearchBar.scss?inline';
 
 const SearchBar: React.FC<{
 	search: (query: string) => void;

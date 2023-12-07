@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./ModalCategory.scss";
+import styles from "./ModalCategory.scss?inline";
 
 const ModalCategory: React.FC<{
 	label?: string;

@@ -1,5 +1,5 @@
 import React from "react";
-import styles from './ModalPanel.scss';
+import styles from './ModalPanel.scss?inline';
 import PanelCloseButton from "~/app/ui/components/PanelCloseButton";
 
 const ModalPanel: React.FC<{

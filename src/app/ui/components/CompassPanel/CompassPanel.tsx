@@ -1,7 +1,7 @@
 import React, {useContext} from "react";
 import Panel from "~/app/ui/components/Panel";
 import Compass from "~/app/ui/components/Compass";
-import styles from './CompassPanel.scss';
+import styles from './CompassPanel.scss?inline';
 import {useRecoilValue} from "recoil";
 import {ActionsContext, AtomsContext} from "~/app/ui/UI";
 

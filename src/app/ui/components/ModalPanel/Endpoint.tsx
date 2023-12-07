@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import styles from "./Endpoint.scss";
+import styles from "./Endpoint.scss?inline";
 import {AiFillDelete, AiFillSave, AiFillEdit} from "react-icons/ai";
 
 const Endpoint: React.FC<{

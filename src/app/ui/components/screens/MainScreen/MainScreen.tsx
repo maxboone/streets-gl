@@ -6,7 +6,7 @@ import DebugInfo from "~/app/ui/components/DebugInfo";
 import LegalAttributionPanel from "~/app/ui/components/LegalAttributionPanel";
 import RenderGraphViewer from "~/app/ui/components/RenderGraphViewer";
 import TimePanel from "~/app/ui/components/TimePanel";
-import styles from './MainScreen.scss';
+import styles from './MainScreen.scss?inline';
 
 const MainScreen: React.FC = () => {
 	const atoms = useContext(AtomsContext);
