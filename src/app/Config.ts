@@ -10,7 +10,7 @@ const Config = {
 	MinCameraDistance: 10,
 	MaxCameraDistance: 4000,
 	SlippyMapTransitionDuration: 400,
-	MinFreeCameraHeight: 5,
+	MinFreeCameraHeight: 2,
 	CameraZoomSmoothing: 0.4,
 	CameraZoomSpeed: 0.0005,
 	CameraZoomTrackpadFactor: 4,
@@ -20,9 +20,9 @@ const Config = {
 	MaxFreeCameraPitch: 89.99,
 	GroundCameraSpeed: 400,
 	GroundCameraSpeedFast: 1200,
-	FreeCameraSpeed: 10,
+	FreeCameraSpeed: 12,
 	FreeCameraSpeedFast: 20,
-	FreeCameraRotationSensitivity: 0.00001,
+	FreeCameraRotationSensitivity: 0.0001,
 	FreeCameraYawSpeed: 0.1,
 	FreeCameraPitchSpeed: 0.1,
 	MinTexturedRoofArea: 50,
@@ -30,7 +30,7 @@ const Config = {
 	BuildingSmoothNormalsThreshold: 30,
 	LightTransitionDuration: 1,
 	OverpassRequestTimeout: 30000,
-	CameraFOVZoomFactor: 2,
+	CameraFOVZoomFactor: 1,
 	CSMShadowCameraNear: 1,
 	CSMShadowCameraFar: 20000,
 	TerrainRingCount: 6,
@@ -51,7 +51,7 @@ const Config = {
 		fov: {
 			label: 'Vertical field of view',
 			selectRange: [5, 120, 1],
-			selectRangeDefault: 80,
+			selectRangeDefault: 120,
 			category: 'general'
 		},
 		labels: {

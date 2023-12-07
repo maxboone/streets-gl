@@ -26,15 +26,9 @@ const MainScreen: React.FC = () => {
 
 	return (
 		<div className={containerClassNames}>
-			<DebugInfo showRenderGraph={(): void => {}}/>
 			<DataTimestamp/>
-			<TimePanel/>
 			<LegalAttributionPanel/>
 			<PositionEditor/>
-			<RenderGraphViewer
-				update={actions.updateRenderGraph}
-				close={(): void => {}}
-			/>
 		</div>
 	);
 }
