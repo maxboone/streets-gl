@@ -91,6 +91,8 @@ export const LocationInfo: React.FC<ILocationInfo> = ({
         setLocation
     ] = useState([0, 0]);
 
+    const [item, setItem] = useState<any>()
+
     useEffect(() => {
         try {
             const hash = actions?.getControlsStateHash && actions.getControlsStateHash();
@@ -178,7 +180,7 @@ export const LocationInfo: React.FC<ILocationInfo> = ({
                             <div className="flex flex-col p-1 gap-1 overflow-y-auto h-full text-white">
                                 {overpass.data.elements.filter(
                                     ({tags} : any ) => !!tags.name && !(tags?.amenity ?? '').includes('parking')
-                                ).map(({tags}: any) => <div className="p-3 rounded-md hover:from-stone-800 hover:to-stone-700 bg-gradient-to-t from-stone-900 to-stone-800 text-white flex flex-row items-center justify-between gap-2">
+                                ).map(({tags}: any) => <div onClick={(): void => setItem(tags)} className="p-3 cursor-pointer rounded-md hover:from-stone-800 hover:to-stone-700 bg-gradient-to-t from-stone-900 to-stone-800 text-white flex flex-row items-center justify-between gap-2">
                                     <AmenityLogo tags={tags}/>
                                     <div className="flex flex-col gap-1 text-right">
                                         <span className="text-lg">{tags?.name ?? "Unnamed"}</span>
@@ -188,7 +190,25 @@ export const LocationInfo: React.FC<ILocationInfo> = ({
                             </div>
                         </div>
                         <div className="col-span-6 relative rounded-md backdrop-blur-md items-center justify-center flex flex-col gap-2 p-2 overflow-y-hidden bg-black/25">
-                                <span className="text-white text-lg">Select a search result...</span>
+                            { item ?  <>
+                                
+                                    <table className="min-w-full text-white border border-gray-300">
+                                        <thead>
+                                        <tr>
+                                            <th className="py-2 px-4 border-b">Key</th>
+                                            <th className="py-2 px-4 border-b">Value</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {Object.entries((item ?? {})).map(([key, value]) => (
+                                            <tr key={`${key}`}>
+                                                <td className="py-2 px-4 border-b">{`${key}`}</td>
+                                                <td className="py-2 px-4 border-b">{`${value}`}</td>
+                                            </tr>
+                                        ))}
+                                        </tbody>
+                                    </table>
+                            </> : <span className="text-white text-lg">Select a search result...</span>}
                         </div>
                         <div className="col-span-3 relative rounded-md backdrop-blur-md items-center flex flex-col gap-2 p-2 overflow-y-hidden bg-black/25">
                             <span className="text-white text-xl text-center flex flex-row items-center justify-center p-2 w-full"><Bot size={32}/></span>
@@ -196,7 +216,7 @@ export const LocationInfo: React.FC<ILocationInfo> = ({
                             {bot_ai.isError && <span className="text-red text-sm text-justify w-full p-2">
                                 {`${JSON.stringify(bot_ai.error)}`}
                             </span>}
-                            {bot_ai.isSuccess && <span className="text-white text-sm text-justify w-full p-2">
+                            {bot_ai.isSuccess && <span className="text-white text-sm text-justify w-full p-2 overflow-y-auto">
                                 {bot_ai.data.choices.map((e) => e.message.content)}
                             </span>}
                         </div>
