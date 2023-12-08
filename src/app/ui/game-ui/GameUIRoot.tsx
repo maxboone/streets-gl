@@ -17,14 +17,42 @@ export const GameUIRoot: React.FC = () => {
     const actions = useContext(ActionsContext);
     const [_, setMarkers] = useAtom(markersAtom);
 
-    const mark: () => void = () => {
+    const mark: () => void = async () => {
         try {
             const hash = actions?.getControlsStateHash && actions.getControlsStateHash();
             if (hash) {
                 const components = hash.split(',');
-                const _lat = +components[0];
-                const _lon = +components[1];
-                setMarkers((e) => [...e, { lat: _lat, lon: _lon }])
+                let _lat = (+components[0]).toFixed(4);
+                let _lon = (+components[1]).toFixed(4);
+
+                const urlParams = new URLSearchParams({
+                    format: 'json',
+                    addressdetails: '1',
+                    lat: _lat,
+                    lon: _lon
+                });
+                
+                const res = await (await fetch("https://nominatim.openstreetmap.org/reverse?" + urlParams.toString()))?.json()
+                if (res.lat && res.lon) {
+                    _lat = (+res.lat).toFixed(4);
+                    _lon = (+res.lon).toFixed(4);
+                }
+
+                setMarkers((e) => {
+                    if (e[`${_lat}:${_lon}`]) {
+                        e[`${_lat}:${_lon}`] = undefined;
+                        return {...e}
+                    }
+
+                    e[`${_lat}:${_lon}`] = {
+                        name: res.name,
+                        id: res.place_id,
+                        latitude: _lat,
+                        longitude: _lon,
+                    }
+
+                    return e;
+                })
             }
         } catch {
         }
@@ -44,9 +72,9 @@ export const GameUIRoot: React.FC = () => {
                 setInfo(true);
             }
             if (e.key == 'm') {
-                mark();
-                setSearch(false);
-                setInfo(false);
+                if (!search && !info) {
+                    mark();
+                }
             }
             if (e.key == 'Escape') {
                 setSearch(false);

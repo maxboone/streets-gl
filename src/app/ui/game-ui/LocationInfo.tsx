@@ -6,7 +6,7 @@ import { FaToilet } from 'react-icons/fa';
 import OpenAI from "openai";
 
 const openai = new OpenAI({
-    apiKey: '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',
+    apiKey: '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',
     dangerouslyAllowBrowser: true,
 });
 

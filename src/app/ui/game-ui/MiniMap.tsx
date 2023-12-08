@@ -58,7 +58,7 @@ export const MiniMap: React.FC = () => {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
             {
-                markers.map((e, i) => <Marker key={i} position={[e.lat, e.lon]}/> )
+                Object.keys(markers).map((e, i) => <Marker key={i} position={[+markers[e].latitude, +markers[e].longitude]}/> )
             }
       </MapContainer>
     </div>

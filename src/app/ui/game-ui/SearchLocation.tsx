@@ -38,10 +38,11 @@ export const SearchLocation: React.FC<ISearchLocation> = ({
 
     if (open) {
         return (
-            <div className="fixed inset-12 flex items-center justify-center">
-                <div className="flex flex-col p-4 gap-2 bg-black/25 backdrop-blur-md text-white items-center rounded-md">
+            <div className="fixed inset-12 flex items-center justify-center" style={{zIndex: 9999}}>
+                <div className="flex flex-col p-4 gap-2 w-full h-full bg-black/25 backdrop-blur-md text-white items-center rounded-md">
                     <h2>Search Results</h2>
                     <input
+                        autoFocus
                         type="text"
                         placeholder="Enter your search query"
                         value={searchQuery}
@@ -54,7 +55,7 @@ export const SearchLocation: React.FC<ISearchLocation> = ({
                         <div className="w-full flex flex-col gap-1 p-1">
                             {data.slice(0, 5).map((result) => (
                                 <button className="rounded-md p-2 bg-gradient-to-t from-black to-stone-900 text-white hover:from-stone-800" onClick={(): void => {
-                                    actions.goToState(+result.lat, +result.lon, 0, 0, 1000);
+                                    actions.goToState(+result.lat, +result.lon, 0, 0, 1);
                                 }}key={result.place_id}>{result.display_name}</button>
                             ))}
                         </div>
