@@ -162,10 +162,6 @@ export default class FreeControlsNavigator extends ControlsNavigator {
 				document.exitPointerLock();
 				this.forwardKeyPressed = this.backwardKeyPressed = this.leftKeyPressed = this.rightKeyPressed = false;
 				break;
-			case 'KeyM':
-				document.exitPointerLock();
-				this.forwardKeyPressed = this.backwardKeyPressed = this.leftKeyPressed = this.rightKeyPressed = false;
-				break;
 			case 'KeyP':
 				document.exitPointerLock();
 				this.forwardKeyPressed = this.backwardKeyPressed = this.leftKeyPressed = this.rightKeyPressed = false;
