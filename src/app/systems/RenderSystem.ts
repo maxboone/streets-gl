@@ -73,7 +73,7 @@ export default class RenderSystem extends System {
 			new ScreenPass(this.passManager),
 			new SSAOPass(this.passManager),
 			new SelectionPass(this.passManager),
-			new LabelPass(this.passManager),
+			// new LabelPass(this.passManager),
 			new AtmosphereLUTPass(this.passManager),
 			new SSRPass(this.passManager),
 			new DoFPass(this.passManager),

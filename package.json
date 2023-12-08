@@ -63,6 +63,8 @@
   "dependencies": {
     "@loaders.gl/core": "^3.2.10",
     "@loaders.gl/gltf": "^3.2.10",
+    "@tanstack/react-query": "^5.12.2",
+    "@tanstack/react-query-devtools": "^5.13.3",
     "astronomy-bundle": "^7.5.5",
     "cmdk": "^0.2.0",
     "d3": "^7.6.1",
@@ -72,6 +74,7 @@
     "leaflet": "^1.9.4",
     "lucide-react": "^0.294.0",
     "maplibre-gl": "^3.6.2",
+    "openai": "^4.20.1",
     "pbf": "^3.2.1",
     "polybooljs": "^1.2.0",
     "polylabel": "^1.1.0",

@@ -33,11 +33,10 @@ export const MiniMap: React.FC = () => {
         return () => clearInterval(intervalID);
     }, [map]);
     
-    return <div className="absolute left-8 bottom-8 overflow-hidden w-64 h-64 rounded-full border border-solid border-4 border-black"
-    style={{ transform: "rotate(" + direction + "deg)" }}>
+    return <div className="absolute left-8 bottom-8 overflow-hidden w-64 h-64 rounded-full border border-solid border-4 border-black">
         <div 
             className="absolute inset-0 flex items-center justify-center" 
-            style={{ zIndex: 999, transform: "rotate(" + (0 - direction) + "deg)" }}>
+            style={{ zIndex: 999, transform: "rotate(" + (360 - direction) + "deg)" }}>
                 <Navigation2 size={24} />
             </div>
         <MapContainer 
