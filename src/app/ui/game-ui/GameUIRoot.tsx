@@ -8,12 +8,16 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { ActionsContext } from "../UI";
 import { useAtom } from "jotai";
 import { markersAtom } from "./markers";
+import { MarkedLocations } from "./MarkedLocations";
+import { StreetView } from "./StreetView";
+import { APIProvider } from "@vis.gl/react-google-maps";
 
 export const queryClient = new QueryClient();
 
 export const GameUIRoot: React.FC = () => {
     const [search, setSearch] = useState(false);
     const [info, setInfo] = useState(false);
+    const [markerModal, setMarkerModal] = useState(false);
     const actions = useContext(ActionsContext);
     const [_, setMarkers] = useAtom(markersAtom);
 
@@ -66,10 +70,17 @@ export const GameUIRoot: React.FC = () => {
             if (e.key == 'p') {
                 setSearch(true);
                 setInfo(false);
+                setMarkerModal(false);
             }
             if (e.key == 'k') {
                 setSearch(false);
                 setInfo(true);
+                setMarkerModal(false);
+            }
+            if (e.key == 'l') {
+                setSearch(false);
+                setInfo(false);
+                setMarkerModal(true);
             }
             if (e.key == 'm') {
                 if (!search && !info) {
@@ -79,6 +90,7 @@ export const GameUIRoot: React.FC = () => {
             if (e.key == 'Escape') {
                 setSearch(false);
                 setInfo(false);
+                setMarkerModal(false);
             }
         }
         
@@ -90,11 +102,15 @@ export const GameUIRoot: React.FC = () => {
     })
 
     return <QueryClientProvider client={queryClient}>
+        <APIProvider apiKey={"AIzaSyADyxTEE9ii8ZGpWSvfiwyTF8Dp0odrclk"}>
         <>
         { search && <SearchLocation open={search} setOpen={setSearch} /> }
         { info && <LocationInfo open={info} setOpen={setInfo} /> }
+        { markerModal && <MarkedLocations open={markerModal} setOpen={setMarkerModal}/>}
         <KeyBindings />
+        <StreetView />
         <MiniMap/>
         </>
+        </APIProvider>
     </QueryClientProvider>
 }
