@@ -1,15 +1,18 @@
 import { LatLngExpression, Map } from 'leaflet';
 import React, { useContext, useEffect, useMemo, useState } from 'react'
-import { MapContainer, TileLayer } from 'react-leaflet';
+import { MapContainer, Marker, TileLayer } from 'react-leaflet';
 import {useRecoilValue} from "recoil";
 import {ActionsContext, AtomsContext} from "~/app/ui/UI";
 import { Navigation, Navigation2 } from 'lucide-react';
+import { useAtom } from 'jotai';
+import { markersAtom } from './markers';
 
 export const MiniMap: React.FC = () => {
 	const atoms = useContext(AtomsContext);
 	const actions = useContext(ActionsContext);
 	const direction = useRecoilValue(atoms.northDirection);
     const map = React.createRef<Map>()
+    const [markers] = useAtom(markersAtom);
 
     useEffect(() => {
         const intervalID = setInterval(() =>  {
@@ -54,6 +57,9 @@ export const MiniMap: React.FC = () => {
             attribution=''
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
+            {
+                markers.map((e, i) => <Marker key={i} position={[e.lat, e.lon]}/> )
+            }
       </MapContainer>
     </div>
 };
