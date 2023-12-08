@@ -66,24 +66,20 @@ export const GameUIRoot: React.FC = () => {
     useEffect(() => {
         const handleKeyUp: (e: KeyboardEvent) => void = (e) => {
             e.preventDefault();
-            console.log(e.key);
             if (e.key == 'p') {
-                setSearch(true);
-                setInfo(false);
-                setMarkerModal(false);
+                if (!search && !info && !markerModal)
+                    setSearch(true);
             }
             if (e.key == 'k') {
-                setSearch(false);
-                setInfo(true);
-                setMarkerModal(false);
+                if (!search && !info && !markerModal)
+                    setInfo(true);
             }
             if (e.key == 'l') {
-                setSearch(false);
-                setInfo(false);
-                setMarkerModal(true);
+                if (!search && !info && !markerModal)
+                    setMarkerModal(true);
             }
             if (e.key == 'm') {
-                if (!search && !info) {
+                if (!search && !info && !markerModal) {
                     mark();
                 }
             }
