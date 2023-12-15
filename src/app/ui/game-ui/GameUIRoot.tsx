@@ -4,7 +4,6 @@ import { MiniMap } from "./MiniMap";
 import KeyBindings from "./KeyBindings";
 import { LocationInfo } from "./LocationInfo";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ActionsContext } from "../UI";
 import { useAtom } from "jotai";
 import { markersAtom } from "./markers";
