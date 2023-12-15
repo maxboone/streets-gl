@@ -52,8 +52,8 @@ export default class SceneSystem extends System {
 		const wrapper = new Object3D();
 		const camera = new PerspectiveCamera({
 			fov: this.getCameraFoVFromSettings(),
-			near: 10,
-			far: 100000,
+			near: 1,
+			far: 2000,
 			aspect: window.innerWidth / window.innerHeight
 		});
 		const skybox = new Skybox();

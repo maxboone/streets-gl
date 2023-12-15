@@ -2,14 +2,15 @@ import {SettingsSchema, SettingsSchemaRangeScale} from "~/app/settings/SettingsS
 
 const Config = {
 	TileSize: /*40075016.68 / (1 << 16)*/ 611.4962158203125,
-	MaxConcurrentTiles: 150,
+	MaxConcurrentTiles: 10,
 	MaxTilesPerWorker: 1,
 	WorkersCount: Math.min(4, navigator.hardwareConcurrency),
-	StartPosition: {lat: 40.76494, lon: -73.97860, pitch: 45, yaw: 0, distance: 2000},
+	StartPosition: {lat: 48.8726746802, lon: 2.2985962424, pitch: -2.5, yaw: 295, distance: 1000.00, height: 10},
+	// StartPosition: {lat: 52.51654, lon: 13.379590, pitch: -1.7, yaw: 255, distance: 10},
 	MinCameraDistance: 10,
 	MaxCameraDistance: 4000,
 	SlippyMapTransitionDuration: 400,
-	MinFreeCameraHeight: 10,
+	MinFreeCameraHeight: 2,
 	CameraZoomSmoothing: 0.4,
 	CameraZoomSpeed: 0.0005,
 	CameraZoomTrackpadFactor: 4,
@@ -19,17 +20,17 @@ const Config = {
 	MaxFreeCameraPitch: 89.99,
 	GroundCameraSpeed: 400,
 	GroundCameraSpeedFast: 1200,
-	FreeCameraSpeed: 400,
-	FreeCameraSpeedFast: 1200,
-	FreeCameraRotationSensitivity: 0.00002,
-	FreeCameraYawSpeed: 0.8,
-	FreeCameraPitchSpeed: 0.8,
+	FreeCameraSpeed: 12,
+	FreeCameraSpeedFast: 20,
+	FreeCameraRotationSensitivity: 0.0001,
+	FreeCameraYawSpeed: 0.1,
+	FreeCameraPitchSpeed: 0.1,
 	MinTexturedRoofArea: 50,
 	MaxTexturedRoofAABBArea: 2e6,
 	BuildingSmoothNormalsThreshold: 30,
 	LightTransitionDuration: 1,
 	OverpassRequestTimeout: 30000,
-	CameraFOVZoomFactor: 2,
+	CameraFOVZoomFactor: 1,
 	CSMShadowCameraNear: 1,
 	CSMShadowCameraFar: 20000,
 	TerrainRingCount: 6,
@@ -50,14 +51,14 @@ const Config = {
 		fov: {
 			label: 'Vertical field of view',
 			selectRange: [5, 120, 1],
-			selectRangeDefault: 40,
+			selectRangeDefault: 120,
 			category: 'general'
 		},
 		labels: {
 			label: 'Text labels',
 			status: ['off', 'on'],
 			statusLabels: ['Disabled', 'Enabled'],
-			statusDefault: 'on',
+			statusDefault: 'off',
 			category: 'general'
 		},
 		terrainHeight: {
@@ -78,14 +79,14 @@ const Config = {
 			label: 'Shadows',
 			status: ['off', 'low', 'medium', 'high'],
 			statusLabels: ['Disabled', 'Low', 'Medium', 'High'],
-			statusDefault: 'medium',
+			statusDefault: 'off',
 			category: 'graphics'
 		},
 		taa: {
 			label: 'TAA',
 			status: ['off', 'on'],
 			statusLabels: ['Disabled', 'Enabled'],
-			statusDefault: 'on',
+			statusDefault: 'off',
 			category: 'graphics'
 		},
 		dof: {
@@ -117,7 +118,7 @@ const Config = {
 			label: 'Bloom',
 			status: ['off', 'on'],
 			statusLabels: ['Disabled', 'Enabled'],
-			statusDefault: 'on',
+			statusDefault: 'off',
 			category: 'graphics'
 		},
 		ssr: {
@@ -131,7 +132,7 @@ const Config = {
 			label: 'Screen-space ambient occlusion',
 			status: ['off', 'on'],
 			statusLabels: ['Disabled', 'Enabled'],
-			statusDefault: 'on',
+			statusDefault: 'off',
 			category: 'graphics'
 		}
 	} as SettingsSchema,

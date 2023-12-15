@@ -10,7 +10,7 @@ export default class FreeControlsNavigator extends ControlsNavigator {
 	private readonly terrainHeightProvider: TerrainHeightProvider;
 	private readonly camera: PerspectiveCamera;
 	private pitch: number = MathUtils.toRad(45);
-	private yaw: number = MathUtils.toRad(0);
+	public yaw: number = MathUtils.toRad(0);
 	private forwardKeyPressed: boolean = false;
 	private leftKeyPressed: boolean = false;
 	private rightKeyPressed: boolean = false;
@@ -21,6 +21,10 @@ export default class FreeControlsNavigator extends ControlsNavigator {
 	private yawMinusKeyPressed: boolean = false;
 	private yawPlusKeyPressed: boolean = false;
 	private pointerLocked: boolean = false;
+	private spacePressed: boolean = false;
+	private jumping: boolean = false;
+	private jump_position: number = 0;
+	private pointer_lock: number = 0;
 
 	public constructor(
 		element: HTMLElement,
@@ -48,12 +52,17 @@ export default class FreeControlsNavigator extends ControlsNavigator {
 	}
 
 	private pointerLockChange(): void {
+		this.pointer_lock = Date.now();
 		this.pointerLocked = document.pointerLockElement === this.element;
 	}
 
 	private mouseDownEvent(e: MouseEvent): void {
 		if (!this.isEnabled) {
 			return;
+		}
+
+		if (this.pointer_lock != null && Date.now() - this.pointer_lock < 2000) {
+			return
 		}
 
 		e.preventDefault();
@@ -107,6 +116,9 @@ export default class FreeControlsNavigator extends ControlsNavigator {
 			case 'KeyF':
 				this.pitchPlusKeyPressed = true;
 				break;
+			case 'Space':
+				this.spacePressed = true;
+				break;
 		}
 	}
 
@@ -142,6 +154,21 @@ export default class FreeControlsNavigator extends ControlsNavigator {
 				break;
 			case 'KeyF':
 				this.pitchPlusKeyPressed = false;
+				break;
+			case 'Space':
+				this.spacePressed = false;
+				break;
+			case 'KeyK':
+				document.exitPointerLock();
+				this.forwardKeyPressed = this.backwardKeyPressed = this.leftKeyPressed = this.rightKeyPressed = false;
+				break;
+			case 'KeyP':
+				document.exitPointerLock();
+				this.forwardKeyPressed = this.backwardKeyPressed = this.leftKeyPressed = this.rightKeyPressed = false;
+				break;
+			case 'KeyL':
+				document.exitPointerLock();
+				this.forwardKeyPressed = this.backwardKeyPressed = this.leftKeyPressed = this.rightKeyPressed = false;
 				break;
 		}
 	}
@@ -185,7 +212,8 @@ export default class FreeControlsNavigator extends ControlsNavigator {
 
 	public override enable(): void {
 		super.enable();
-		this.element.requestPointerLock();
+		// Only request pointer lock from gesture.
+		// this.element.requestPointerLock();
 	}
 
 	public override disable(): void {
@@ -218,8 +246,8 @@ export default class FreeControlsNavigator extends ControlsNavigator {
 
 	public update(deltaTime: number): void {
 		const mat = this.camera.matrixWorld.values;
-		const forwardDir = Vec3.normalize(new Vec3(mat[8], mat[9], mat[10]));
-		const rightDir = Vec3.normalize(new Vec3(mat[0], mat[1], mat[2]));
+		const forwardDir = Vec3.normalize(new Vec3(mat[8], 0, mat[10]));
+		const rightDir = Vec3.normalize(new Vec3(mat[0], 0, mat[2]));
 		const speed = this.fastMovementKeyPressed ? Config.FreeCameraSpeedFast : Config.FreeCameraSpeed;
 
 		let movementDelta = new Vec3();
@@ -230,10 +258,23 @@ export default class FreeControlsNavigator extends ControlsNavigator {
 			movementDelta = Vec3.add(movementDelta, Vec3.multiplyScalar(forwardDir, deltaTime));
 		}
 		if (this.leftKeyPressed) {
-			movementDelta = Vec3.add(movementDelta, Vec3.multiplyScalar(rightDir, -deltaTime));
+			movementDelta = Vec3.add(movementDelta, Vec3.multiplyScalar(rightDir, 0.5 * -deltaTime));
 		}
 		if (this.rightKeyPressed) {
-			movementDelta = Vec3.add(movementDelta, Vec3.multiplyScalar(rightDir, deltaTime));
+			movementDelta = Vec3.add(movementDelta, Vec3.multiplyScalar(rightDir, 0.5 * deltaTime));
+		}
+		if (this.spacePressed) {
+			this.jumping = true;
+		}
+		let _jump_y = 0;
+
+		if (this.jumping) {
+			if (this.jump_position == 30) {
+				this.jumping = false;
+				this.jump_position = 0;
+			}
+			this.jump_position++;
+			_jump_y = (-((-1 + this.jump_position / 15)**2) + 1)
 		}
 		movementDelta = Vec3.multiplyScalar(movementDelta, speed);
 
@@ -242,7 +283,7 @@ export default class FreeControlsNavigator extends ControlsNavigator {
 		this.camera.position.z += movementDelta.z;
 
 		const heightmapValue = this.getHeightmapValueAtPosition(this.camera.position.x, this.camera.position.z);
-		this.camera.position.y = Math.max(this.camera.position.y, heightmapValue + Config.MinFreeCameraHeight);
+		this.camera.position.y = heightmapValue + Config.MinFreeCameraHeight + _jump_y;
 
 		this.camera.updateMatrix();
 

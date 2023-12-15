@@ -26,7 +26,7 @@ const LoadingScreen: React.FC = () => {
 		onTransitionEnd={(): void => setShowSelf(false)}
 	>
 		<div className={classes.loadingScreen}>
-			<div className={classes.loadingScreen__title}>Streets GL</div>
+			<div className={classes.loadingScreen__title}>Streets GL - Route Generator</div>
 			<div className={classes.loadingScreen__progressBar}>
 				<div className={classes.loadingScreen__progressBar__inner} style={{width: `${loadingProgress * 100}%`}}/>
 			</div>
@@ -35,7 +35,7 @@ const LoadingScreen: React.FC = () => {
 			}</div>
 			<div className={classes.loadingScreen__info}>
 				<a href={IssuesURL} target={'_blank'}>
-					Report an issue
+					
 				</a>
 			</div>
 		</div>
