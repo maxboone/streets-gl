@@ -20,8 +20,8 @@ export const MiniMap: React.FC = () => {
                 const hash = actions?.getControlsStateHash && actions.getControlsStateHash();
                 if (hash && map?.current) {
                     const components = hash.split(',');
-                    const lat = +components[0];
-                    const lon = +components[1];
+                    const lat = +components[0] || 0;
+                    const lon = +components[1] || 0;
 
                     if (lat && lon) {
                         map?.current?.setView([lat, lon]);
@@ -39,7 +39,7 @@ export const MiniMap: React.FC = () => {
     return <div className="absolute left-8 bottom-8 overflow-hidden w-64 h-64 rounded-full border border-solid border-4 border-black">
         <div 
             className="absolute inset-0 flex items-center justify-center" 
-            style={{ zIndex: 999, transform: "rotate(" + (360 - direction) + "deg)" }}>
+            style={{ zIndex: 999, transform: "rotate(" + (360 - (direction ?? 0)) + "deg)" }}>
                 <Navigation2 size={24} />
             </div>
         <MapContainer 
@@ -58,7 +58,7 @@ export const MiniMap: React.FC = () => {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
             {
-                Object.keys(markers).map((e, i) => <Marker key={i} position={[+markers[e].latitude, +markers[e].longitude]}/> )
+                Object.keys(markers).map((e, i) => markers[e] && <Marker key={i} position={[+markers[e].latitude, +markers[e].longitude]}/> )
             }
       </MapContainer>
     </div>

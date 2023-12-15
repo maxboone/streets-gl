@@ -38,8 +38,8 @@ export const StreetView: React.FC = () => {
                 const hash = actions?.getControlsStateHash && actions.getControlsStateHash();
                 if (hash) {
                     const components = hash.split(',');
-                    const _lat = +components[0];
-                    const _lon = +components[1];
+                    const _lat = +components[0] || 0;
+                    const _lon = +components[1] || 0;
 
                     if (_lat && _lon) {
                         setLat(_lat)

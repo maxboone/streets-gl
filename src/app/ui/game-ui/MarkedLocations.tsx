@@ -55,8 +55,8 @@ export const MarkedLocations: React.FC<IMarkedLocations> = ({
         return (
             <div className="fixed inset-12 grid grid-cols-12 gap-2" style={{ zIndex: 9999 }}>
                         <div className="col-span-3 relative rounded-md backdrop-blur-md bg-black/25 p-2 flex flex-col gap-2 overflow-y-hidden">
-                            <span className="text-white text-xl text-center p-2">Nearby Results</span>
-                            {!mkeys.length && <span className="text-gray-800">No points of interest found.</span>}
+                            <span className="text-white text-xl text-center p-2">Marked locations</span>
+                            {!mkeys.length && <span className="text-gray-800">No locations marked yet.</span>}
                             <div className="flex flex-col p-1 gap-1 overflow-y-auto h-full text-white">
                                 {mkeys.map((e) => <div className="p-3 rounded-md bg-gradient-to-t from-stone-900 to-stone-800 text-white flex flex-row items-center justify-between gap-2">
                                     <MapPinned size={24}/>

@@ -4,11 +4,8 @@ import { useQuery } from '@tanstack/react-query';
 import { Armchair, Banknote, Bike, Bot, BusFront, Coffee, GraduationCap, HelpCircle, Landmark, Loader2, LucideIcon, Mail, Martini, Pizza, School, UtensilsCrossed } from 'lucide-react';
 import { FaToilet } from 'react-icons/fa';
 import OpenAI from "openai";
-
-const openai = new OpenAI({
-    apiKey: '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',
-    dangerouslyAllowBrowser: true,
-});
+import { useAtom } from 'jotai';
+import { openaiAtom } from './keys';
 
 type ILocationInfo = {
     open: boolean;
@@ -92,6 +89,12 @@ export const LocationInfo: React.FC<ILocationInfo> = ({
     ] = useState([0, 0]);
 
     const [item, setItem] = useState<any>()
+    const [oaiKey] = useAtom(openaiAtom) 
+    
+    const openai = new OpenAI({
+        apiKey: oaiKey,
+        dangerouslyAllowBrowser: true,
+    });
 
     useEffect(() => {
         try {

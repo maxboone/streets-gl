@@ -23,6 +23,11 @@ export const KeyBindings: React.FC = () => {
             <span className="p-1 pr-3 pb-3 flex items-center justify-center w-8 border-solid border border-white rounded-sm text-white">P</span>
             <span>to open search prompt</span>
         </div>
+        <div className="flex flex-row gap-2 items-center">
+            <span>Press</span>
+            <span className="p-1 pr-3 pb-3 flex items-center justify-center w-8 border-solid border border-white rounded-sm text-white">U</span>
+            <span>to open settings menu</span>
+        </div>
     </div>
   )
 }
